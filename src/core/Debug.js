@@ -145,7 +145,7 @@ function Debug(config) {
 
         if (showLogTimestamp) {
             logTime = new Date().getTime();
-            message += '[' + (logTime - startTime) + ']';
+            message += '[' + (logTime - startTime) + ', ' + logTime + ']';
         }
 
         if (showCalleeName && _this && _this.getClassName) {

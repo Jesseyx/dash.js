@@ -692,6 +692,7 @@ function StreamController() {
             }
         }
 
+        // read: 同步完成开始组建 streams
         composeStreams();
     }
 
@@ -700,15 +701,16 @@ function StreamController() {
             //Since streams are not composed yet , need to manually look up useCalculatedLiveEdgeTime to detect if stream
             //is SegmentTimeline to avoid using time source
             const manifest = e.manifest;
-            adapter.updatePeriods(manifest);
-            const streamInfo = adapter.getStreamsInfo(undefined, 1)[0];
-            const mediaInfo = (
+            adapter.updatePeriods(manifest); // read: 更新 Periods, 可能包含多个 Periods
+            const streamInfo = adapter.getStreamsInfo(undefined, 1)[0]; // read: streamInfo is a alias for Period
+            const mediaInfo = ( // read: media info is a alias for AdaptationSet
                 adapter.getMediaInfoForType(streamInfo, Constants.VIDEO) ||
                 adapter.getMediaInfoForType(streamInfo, Constants.AUDIO)
             );
 
             let useCalculatedLiveEdgeTime;
             if (mediaInfo) {
+                // read: 计算是使用自己的 timeline 时间还是使用 http://time.akamai.com/?iso&ms 标准的iso服务器时间
                 useCalculatedLiveEdgeTime = adapter.getUseCalculatedLiveEdgeTimeForMediaInfo(mediaInfo);
                 if (useCalculatedLiveEdgeTime) {
                     logger.debug('SegmentTimeline detected using calculated Live Edge Time');

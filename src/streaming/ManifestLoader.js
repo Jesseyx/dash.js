@@ -121,6 +121,10 @@ function ManifestLoader(config) {
                 // Manage situations in which success is called after calling reset
                 if (!xlinkController) return;
 
+                // read: test start
+                // data = data.replace(/timeShiftBufferDepth="PT[\d.]+S"/, 'timeShiftBufferDepth="PT6S"');
+                // read: test start
+
                 let actualUrl,
                     baseUri,
                     manifest;

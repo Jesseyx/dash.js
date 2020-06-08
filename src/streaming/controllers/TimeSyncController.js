@@ -319,6 +319,7 @@ function TimeSyncController() {
                 handlers[source.schemeIdUri](
                     source.value,
                     function (serverTime) {
+                        // debugger;
                         // the timing source returned something useful
                         const deviceTime = new Date().getTime();
                         const offset = calculateTimeOffset(serverTime, deviceTime);

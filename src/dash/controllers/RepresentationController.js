@@ -158,6 +158,9 @@ function RepresentationController(config) {
     }
 
     function updateRepresentation(representation, isDynamic) {
+        // debugger;
+        // read: 计算分片可用范围
+        // debugger;
         representation.segmentAvailabilityRange = timelineConverter.calcSegmentAvailabilityRange(representation, isDynamic);
 
         if ((representation.segmentAvailabilityRange.end < representation.segmentAvailabilityRange.start) && !representation.useCalculatedLiveEdgeTime) {

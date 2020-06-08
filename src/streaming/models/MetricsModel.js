@@ -238,6 +238,7 @@ function MetricsModel(config) {
         vo.time = currentTime ;
         vo.range = range;
         vo.manifestInfo = mpd;
+        // debugger;
 
         pushAndNotify(mediaType, MetricsConstants.DVR_INFO, vo);
     }

@@ -409,9 +409,13 @@ function PlaybackController() {
         if (!DVRWindow) {
             return NaN;
         }
+
+        console.warn('getActualPresentationTime currentTime and DVRWindow is', currentTime, DVRWindow);
+
+        // read: currentTime 当前播放时间
         if (currentTime > DVRWindow.end) {
             actualTime = Math.max(DVRWindow.end - streamInfo.manifestInfo.minBufferTime * 2, DVRWindow.start);
-
+            console.warn('actualTime = Math.max(DVRWindow.end - streamInfo.manifestInfo.minBufferTime * 2, DVRWindow.start)');
         } else if (currentTime > 0 && currentTime + 0.250 < DVRWindow.start && Math.abs(currentTime - DVRWindow.start) < 315360000) {
 
             // Checking currentTime plus 250ms as the 'timeupdate' is fired with a frequency between 4Hz and 66Hz
@@ -420,6 +424,7 @@ function PlaybackController() {
             // Checking also duration of the DVR makes sense. We detected temporary situations in which currentTime
             // is bad reported by the browser which causes playback to jump to start (315360000 = 1 year)
             actualTime = DVRWindow.start;
+            console.warn('actualTime = DVRWindow.start');
         } else {
             actualTime = currentTime;
         }
@@ -447,7 +452,9 @@ function PlaybackController() {
         const currentTime = getNormalizedTime();
         const actualTime = getActualPresentationTime(currentTime);
         const timeChanged = (!isNaN(actualTime) && actualTime !== currentTime);
+        // read: 这里会导致 request cancel
         if (timeChanged) {
+            console.warn('updateCurrentTime: timeChanged, seek, currentTime and actualTime is', currentTime, actualTime);
             seek(actualTime);
         }
     }
@@ -461,6 +468,7 @@ function PlaybackController() {
         if (info === null || streamInfo.id !== info.id) return;
         streamInfo = info;
 
+        // read: 请求 mpd 后会更新
         updateCurrentTime();
     }
 

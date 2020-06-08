@@ -35,7 +35,9 @@ angular.module('DashIFTestVectorsService', ['ngResource']).factory('dashifTestVe
 
 app.controller('DashController', function ($scope, sources, contributors, dashifTestVectors) {
     $scope.selectedItem = {
-        url: 'https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd'
+        // url: 'https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd'
+        // url: 'http://4004-bts-d.liveplay.egame.qq.com/live/4004_530.mpd?bizid=4004&txSecret=745cdda971b46f1a316167c25f0c95ed&txTime=5ef3a6b1&pggcodec=vp9'
+        url: 'http://4004-bts-d.liveplay.egame.qq.com/live/4004_355_test.mpd?bizid=4004&txSecret=d331deb69f0639bf622881b985a6b7d7&txTime=5f3c094c&pggcodec=vp9'
     };
 
     sources.query(function (data) {
@@ -245,7 +247,8 @@ app.controller('DashController', function ($scope, sources, contributors, dashif
             // Set default initial configuration
             var initialConfig = {
                 'debug': {
-                    'logLevel': dashjs.Debug.LOG_LEVEL_INFO
+                    // 'logLevel': dashjs.Debug.LOG_LEVEL_INFO,
+                    'logLevel': dashjs.Debug.LOG_LEVEL_DEBUG
                 },
                 'streaming': {
                     'fastSwitchEnabled': $scope.fastSwitchSelected,

@@ -308,6 +308,7 @@ function StreamProcessor(config) {
         const manifestInfo = streamInfo.manifestInfo;
         const isDynamic = manifestInfo.isDynamic;
         const range = timelineConverter.calcSegmentAvailabilityRange(representationController.getCurrentRepresentation(), isDynamic);
+        console.log('addDVRMetric: range and now is', range, Date.now() / 1000);
         dashMetrics.addDVRInfo(getType(), playbackController.getTime(), manifestInfo, range);
     }
 

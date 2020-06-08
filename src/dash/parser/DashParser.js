@@ -69,6 +69,7 @@ function DashParser() {
             matchers:           matchers
         });
 
+        // read: Flattens deeply nested object into a single level object with optional filtering.
         objectIron = ObjectIron(context).create({
             adaptationset: new RepresentationBaseValuesMap(),
             period: new SegmentValuesMap()

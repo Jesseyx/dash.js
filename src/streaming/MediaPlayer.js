@@ -667,6 +667,7 @@ function MediaPlayer() {
 
     /**
      * The timeShiftBufferLength (DVR Window), in seconds.
+     * DVR Window: Digital video recorder
      *
      * @returns {number} The window of allowable play time behind the live point of a live stream.
      * @memberof module:MediaPlayer
